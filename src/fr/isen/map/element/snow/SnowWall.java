@@ -1,32 +1,33 @@
-package fr.isen.map.element.town;
+package fr.isen.map.element.snow;
 
 import java.awt.Image;
 
-import fr.isen.map.element.Ground;
 import fr.isen.map.element.TileModel;
+import fr.isen.map.element.Wall;
 import fr.isen.utils.R;
 
 /**
  * 
  * @author legra
  *
- * Element de sol pour une carte de type ville.
+ * Un élément de mur pour une carte de type zone enneignée.
  */
-public class TownGround extends Ground {
-
+public class SnowWall extends Wall {
+	
 	/**
 	 * Constructeur.
 	 */
-	public TownGround() {
-		this.model = new TileModel("./town/ground.png");
+	public SnowWall() {
+		this.model = new TileModel("./snow/wall.png");
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean enter() {
-		return true;
+		this.updateModelImagePath("./snow/wall-active.png");
+		return false;
 	}
 
 	/**

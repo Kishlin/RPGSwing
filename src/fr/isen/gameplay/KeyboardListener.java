@@ -3,18 +3,29 @@ package fr.isen.gameplay;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * 
+ * @author legra
+ *
+ * Classe à abonner aux évènements clavier.
+ */
 public class KeyboardListener implements KeyListener {
 	
 	private Movable movable = null;
 	
+	/**
+	 * Constructeur.
+	 * @param movable Movable Objet déplaçable avec les flèches directionnelles ou ZQSD.
+	 */
 	public KeyboardListener(Movable movable) {
 		this.movable = movable;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println(e.getKeyCode());
-
 	    int key = e.getKeyCode();
 
 	    if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_Q) {
@@ -34,10 +45,16 @@ public class KeyboardListener implements KeyListener {
 	    }
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}

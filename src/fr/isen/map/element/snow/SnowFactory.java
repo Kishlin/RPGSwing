@@ -1,4 +1,4 @@
-package fr.isen.map.element.town;
+package fr.isen.map.element.snow;
 
 import fr.isen.map.element.Ground;
 import fr.isen.map.element.MapElementFactory;
@@ -8,23 +8,23 @@ import fr.isen.map.element.Wall;
  * 
  * @author legra
  *
- * Factory des éléments de type ville.
+ * Factory des éléments de type zone enneigée.
  */
-public class TownFactory extends MapElementFactory {
+public class SnowFactory extends MapElementFactory {
 
-	private static TownFactory instance = null;
+	private static SnowFactory instance = null;
 
 	/**
 	 * Constructeur.
 	 */
-	private TownFactory() { }
+	private SnowFactory() { }
 
 	/**
 	 * Renvoie l'instance du singleton.
-	 * @return TownFactory La factory.
+	 * @return SnowFactory La factory.
 	 */
-	public static TownFactory getInstance() {
-		if (instance == null) instance = new TownFactory();
+	public static SnowFactory getInstance() {
+		if (instance == null) instance = new SnowFactory();
 		
 		return instance;
 	}
@@ -34,7 +34,7 @@ public class TownFactory extends MapElementFactory {
 	 */
 	@Override
 	public Wall getWall() {
-		return new TownWall();
+		return new SnowWall();
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class TownFactory extends MapElementFactory {
 	 */
 	@Override
 	public Ground getGround() {
-		return new TownGround();
+		return new SnowGround();
 	}
 
 }

@@ -2,28 +2,70 @@ package fr.isen.player;
 
 import java.awt.Image;
 
-import fr.isen.display.Drawable;
+import javax.swing.JPanel;
+
+import fr.isen.mvc.Controller;
 import fr.isen.utils.R;
 
-public class Player implements Drawable {
+/**
+ * 
+ * @author legra
+ *
+ * Classe correspondant au personnage dans le jeu.
+ */
+public class Player implements Controller {
 	
-	private Position position = null;
+	private JPanel listener = null;
 	
+	private PlayerModel model = null;
+	
+	/**
+	 * Constructeur.
+	 */
 	public Player() {
-		position = new Position();
+		model = new PlayerModel();
 	}
-
-	public void setPosition(Position position) {
-		this.position = position;
-	}
-
+	
+	/**
+	 * Renvoie la position du joueur.
+	 * @return Position La position.
+	 */
 	public Position getPosition() {
-		return position;
+		return this.model.getPosition();
 	}
 
+	/**
+	 * Mets à jour la position du joueur en incrémentant les coordonnées correspondantes.
+	 * @param x int Evolution de la position verticale.
+	 * @param y int Evolution de la position horizontale.
+	 */
+	public void updatePosition(int x, int y) {
+		this.model.updatePosition(x, y);
+		this.updateView();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setView(JPanel listener) {
+		this.listener = listener;		
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void updateView() {
+		if (this.listener != null) listener.repaint();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Image getImage() {
-		return R.returnImage("./player.png");
-	}	
+		return R.returnImage(this.model.getImagePath());
+	}
 
 }

@@ -6,9 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import fr.isen.gameplay.KeyboardListener;
+import fr.isen.utils.Constants;
 import fr.isen.utils.Helper;
 import fr.isen.world.RPGWorldManager;
 
+/**
+ * @author legra
+ *
+ *
+ * Fenêtre principale de l'application.
+ */
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 	
@@ -16,22 +23,26 @@ public class MainWindow extends JFrame {
 	
     JLabel label;
 
-    public MainWindow(RPGWorldManager world) {
+    /**
+     * Constructeur.
+     * @param worldManager RPGWorldManager Manager du jeu en cours.
+     */
+    public MainWindow(RPGWorldManager worldManager) {
         super("2D RPG");
         
-        this.world = world;
+        this.world = worldManager;
         
         this.setLayout(new BorderLayout());
-        MapPanel panel = new MapPanel(world);
+        MainPanel panel = new MainPanel(world);
         this.getContentPane().add(panel, BorderLayout.CENTER);
         
-        setSize(
-        	Helper.indexToPixel(this.world.getMap().getWidth()), 
-        	Helper.indexToPixel(this.world.getMap().getHeight() + 1)
-        );
-        
 		addKeyListener(new KeyboardListener(this.world));
-        
+
+		setSize(
+        	Helper.indexToPixel(Constants.MAP_WIDTH), 
+        	Helper.indexToPixel(Constants.MAP_HEIGHT + 1)
+        );
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 		setVisible(true);
